@@ -3,7 +3,9 @@
 <% @the_movie.errors.full_messages.each do |message| %>
   <p style="color: red;"><%= message %></p>
 <% end %>
-
+<!-->
+<form action="/movies/<%= @the_movie.id %>" method="post" data-turbo="false">
+-->
 <form action="/movies/<%= @the_movie.id %>" method="post" data-turbo="false">
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
   

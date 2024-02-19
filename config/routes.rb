@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # CREATE
   post "/movies" => "movies#create", as: :movies # movies_url and movies_path
 
-  get "/movies/new" => "movies#new", as :new_movie 
+  get "/movies/new" => "movies#new", as: :new_movie 
           
   # READ
   get "/movies" => "movies#index"
