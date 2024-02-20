@@ -43,7 +43,7 @@ class MoviesController < ApplicationController
 
   def create
     @the_movie = Movie.new
-    @the_movie.title = params.fetch("query_title")
+    @the_movie.title = params.fetch("query_title") #in params we usually use symbols instead of strings 
     @the_movie.description = params.fetch("query_description")
 
     if @the_movie.valid?

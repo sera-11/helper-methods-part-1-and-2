@@ -59,12 +59,12 @@
     </td>
 
     <td>
-      <!--<a href="/movies/<%= a_movie.id %>"> -->
+      <!--<a href="/movies/<%#= a_movie.id %>" 
 
-      <!-- <%= link_to "Go to Google", "https://google.com" %> -->
+      <%#= link_to "Go to Google", "https://google.com" %> -->
 
       <%= link_to "Show details", movie_path(movie) %>
-     <!-- <a href="<%= movie_path(a_movie) %>">
+     <!-- <a href="<%#= movie_path(a_movie) %>"
         Show details
       </a> -->
     </td>
@@ -73,6 +73,22 @@
 </table>
 
 
+<hr>
+
+
+<form> 
+
+  <label>First Name</label>
+  <input name="full_name[first]" value="first name">
+
+  <label>Middle Initial</label>
+  <input name="full_name[middle]" value="middle initial">
+
+  <label>Last Name</label>
+  <input name="full_name[last]" value="last name">
+
+  <button>Submit </button>
+</form>
 
 
 <%#= link_to "Show details", a_movie %>
