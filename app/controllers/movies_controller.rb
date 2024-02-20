@@ -22,11 +22,21 @@ class MoviesController < ApplicationController
   end
 
   def show
-    the_id = params.fetch(:id)
+    # #get id
+    # the_id = params.fetch(:id)
 
-    matching_movies = Movie.where({ :id => the_id })
+    # #search
+    # matching_movies = Movie.where({ :id => the_id })
 
-    @the_movie = matching_movies.first
+    # #get first one
+    # @the_movie = matching_movies.first
+
+    # @the_movie = Movie.where( id: params.fetch(:id)).first
+
+    # @the_movie = Movie.find_by( id: params.fetch( :id ))
+
+    @the_movie = Movie.find( params.fetch( :id ))
+
 
     #render template: "movies/show" 
   end
@@ -45,11 +55,13 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    the_id = params.fetch(:id)
+    # the_id = params.fetch(:id)
 
-    matching_movies = Movie.where({ :id => the_id })
+    # matching_movies = Movie.where({ :id => the_id })
 
-    @the_movie = matching_movies.first
+    # @the_movie = matching_movies.first
+
+    @the_movie = Movie.find(params.fetch( :id ))
 
     #render template: "movies/edit"
   end
