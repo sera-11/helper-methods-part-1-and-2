@@ -35,16 +35,19 @@ class MoviesController < ApplicationController
 
     # @the_movie = Movie.find_by( id: params.fetch( :id ))
 
-    @the_movie = Movie.find( params.fetch( :id ))
+    @movie = Movie.find( params.fetch( :id ))
 
 
     #render template: "movies/show" 
   end
 
   def create
-    @movie = Movie.new
-    @movie.title = params.fetch(:movie).fetch(:title) #in params we usually use symbols instead of strings 
-    @movie.description = params.fetch(:movie).fetch(:description)
+    # @movie = Movie.new
+    # @movie.title = params.fetch(:movie).fetch(:title) #in params we usually use symbols instead of strings 
+    # @movie.description = params.fetch(:movie).fetch(:description)
+
+    movie_attributes = params.require(:movie).permit(:title,:description) #returns object of another class
+    @movie = Movie.new(movie_attributes)
 
     if @movie.valid?
       @movie.save
@@ -60,24 +63,27 @@ class MoviesController < ApplicationController
     # matching_movies = Movie.where({ :id => the_id })
 
     # @the_movie = matching_movies.first
-
-    @the_movie = Movie.find(params.fetch( :id ))
+    
+    @movie = Movie.find(params.fetch(:id))
 
     #render template: "movies/edit"
   end
 
   def update
-    the_id = params.fetch(:id)
-    the_movie = Movie.where({ :id => the_id }).first
+    
+    movie_attributes = params.require(:movie).permit(:title,:description)
 
-    the_movie.title = params.fetch("query_title")
-    the_movie.description = params.fetch("query_description")
+    @movie = Movie.find(params.fetch(:id))
 
-    if the_movie.valid?
-      the_movie.save
-      redirect_to movie_url(the_movie), notice: "Movie updated successfully."
+    @movie.update(movie_attributes)
+
+    
+
+    if @movie.valid?
+      @movie.save
+      redirect_to movie_url(@movie), notice: "Movie updated successfully."
     else
-      redirect_to "/movies/#{the_movie.id}", alert: "Movie failed to update successfully."
+      redirect_to movie_url(@movie), alert: "Movie failed to update successfully"
     end
   end
 
