@@ -8,11 +8,11 @@ class MoviesController < ApplicationController
   def index
     matching_movies = Movie.all
 
-    @list_of_movies = matching_movies.order({ :created_at => :desc })
+    @movies = matching_movies.order({ :created_at => :desc })
 
     respond_to do |format|
       format.json do
-        render json: @list_of_movies
+        render json: @movies
       end
 
       format.html do
